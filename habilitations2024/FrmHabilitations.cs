@@ -1,35 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using habilitations2024.Controleur; // Pour accéder au DeveloppeurController
+using habilitations2024.Controleur;
 
 namespace habilitations2024
 {
     public partial class FrmHabilitations : Form
     {
         private readonly DeveloppeurController _controller = new DeveloppeurController();
-        private List<Developpeur> developpeurs; // Liste en mémoire des développeurs affichés
+        private List<Developpeur> developpeurs;
 
         public FrmHabilitations()
         {
             InitializeComponent();
 
             ChargementComboBoxProfils();
+            ChargementComboBoxProfilSaisie();
 
             comboBoxProfils.SelectedIndexChanged += ComboBoxProfils_SelectedIndexChanged;
             dataGridViewDeveloppeurs.SelectionChanged += DataGridViewDeveloppeurs_SelectionChanged;
 
-            // Sélectionne la ligne vide au démarrage
             comboBoxProfils.SelectedIndex = 0;
         }
 
-        /// <summary>
-        /// Charge le comboBox des profils avec une ligne vide en premier.
-        /// </summary>
         private void ChargementComboBoxProfils()
         {
             comboBoxProfils.Items.Clear();
-            comboBoxProfils.Items.Add(""); // Ligne vide pour "Tous les profils"
+            comboBoxProfils.Items.Add("");
 
             List<string> profils = _controller.GetLesProfils();
             foreach (var profil in profils)
@@ -38,10 +35,17 @@ namespace habilitations2024
             }
         }
 
-        /// <summary>
-        /// Événement déclenché lors du changement de sélection du comboBox des profils.
-        /// Recharge la liste des développeurs selon le filtre.
-        /// </summary>
+        private void ChargementComboBoxProfilSaisie()
+        {
+            comboBoxProfil.Items.Clear();
+
+            List<string> profils = _controller.GetLesProfils();
+            foreach (var profil in profils)
+            {
+                comboBoxProfil.Items.Add(profil);
+            }
+        }
+
         private void ComboBoxProfils_SelectedIndexChanged(object sender, EventArgs e)
         {
             string profilSelectionne = comboBoxProfils.SelectedItem?.ToString() ?? "";
@@ -49,35 +53,23 @@ namespace habilitations2024
             ViderChamps();
         }
 
-        /// <summary>
-        /// Charge la DataGridView des développeurs selon le profil (vide = tous).
-        /// </summary>
-        /// <param name="profil">Profil filtré</param>
         private void ChargerListeDeveloppeurs(string profil)
         {
             developpeurs = _controller.GetLesDeveloppeurs(profil);
             dataGridViewDeveloppeurs.DataSource = null;
             dataGridViewDeveloppeurs.DataSource = developpeurs;
 
-            // Masquer la colonne Id pour plus de lisibilité
             if (dataGridViewDeveloppeurs.Columns["Id"] != null)
                 dataGridViewDeveloppeurs.Columns["Id"].Visible = false;
         }
 
-        /// <summary>
-        /// Vide les champs de saisie.
-        /// </summary>
         private void ViderChamps()
         {
             txtNom.Text = "";
             txtPrenom.Text = "";
-            txtProfil.Text = "";
+            comboBoxProfil.SelectedIndex = -1;
         }
 
-        /// <summary>
-        /// Quand on sélectionne un développeur dans le DataGridView,
-        /// on affiche ses informations dans les champs de texte.
-        /// </summary>
         private void DataGridViewDeveloppeurs_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewDeveloppeurs.SelectedRows.Count == 1)
@@ -85,7 +77,7 @@ namespace habilitations2024
                 var dev = (Developpeur)dataGridViewDeveloppeurs.SelectedRows[0].DataBoundItem;
                 txtNom.Text = dev.Nom;
                 txtPrenom.Text = dev.Prenom;
-                txtProfil.Text = dev.Profil;
+                comboBoxProfil.SelectedItem = dev.Profil;
             }
             else
             {
@@ -93,9 +85,6 @@ namespace habilitations2024
             }
         }
 
-        /// <summary>
-        /// Ajoute un nouveau développeur.
-        /// </summary>
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             try
@@ -104,7 +93,7 @@ namespace habilitations2024
                 {
                     Nom = txtNom.Text.Trim(),
                     Prenom = txtPrenom.Text.Trim(),
-                    Profil = txtProfil.Text.Trim()
+                    Profil = comboBoxProfil.SelectedItem?.ToString() ?? ""
                 };
 
                 if (string.IsNullOrEmpty(nouveauDev.Nom) ||
@@ -117,17 +106,17 @@ namespace habilitations2024
 
                 _controller.AjouterDeveloppeur(nouveauDev);
 
-                // Recharge la liste avec le filtre actif
                 string profilSelectionne = comboBoxProfils.SelectedItem?.ToString() ?? "";
                 ChargerListeDeveloppeurs(profilSelectionne);
 
                 ViderChamps();
                 MessageBox.Show("Développeur ajouté avec succès.", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Mise à jour des profils dans le comboBox
                 int index = comboBoxProfils.SelectedIndex;
                 ChargementComboBoxProfils();
                 comboBoxProfils.SelectedIndex = index;
+
+                ChargementComboBoxProfilSaisie();
             }
             catch (Exception ex)
             {
@@ -135,9 +124,6 @@ namespace habilitations2024
             }
         }
 
-        /// <summary>
-        /// Modifie le développeur sélectionné.
-        /// </summary>
         private void btnModifier_Click(object sender, EventArgs e)
         {
             if (dataGridViewDeveloppeurs.SelectedRows.Count != 1)
@@ -151,7 +137,7 @@ namespace habilitations2024
                 var dev = (Developpeur)dataGridViewDeveloppeurs.SelectedRows[0].DataBoundItem;
                 dev.Nom = txtNom.Text.Trim();
                 dev.Prenom = txtPrenom.Text.Trim();
-                dev.Profil = txtProfil.Text.Trim();
+                dev.Profil = comboBoxProfil.SelectedItem?.ToString() ?? "";
 
                 if (string.IsNullOrEmpty(dev.Nom) ||
                     string.IsNullOrEmpty(dev.Prenom) ||
@@ -174,9 +160,6 @@ namespace habilitations2024
             }
         }
 
-        /// <summary>
-        /// Supprime le développeur sélectionné.
-        /// </summary>
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
             if (dataGridViewDeveloppeurs.SelectedRows.Count != 1)
