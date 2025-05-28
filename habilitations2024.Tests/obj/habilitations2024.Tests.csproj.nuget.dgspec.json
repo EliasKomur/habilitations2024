@@ -92,31 +92,15 @@
         "projectUniqueName": "C:\\Users\\elias\\source\\repos\\habilitations2024\\habilitations2024\\habilitations2024.csproj",
         "projectName": "habilitations2024",
         "projectPath": "C:\\Users\\elias\\source\\repos\\habilitations2024\\habilitations2024\\habilitations2024.csproj",
-        "packagesPath": "C:\\Users\\elias\\.nuget\\packages\\",
-        "projectStyle": "PackagesConfig",
         "UsingMicrosoftNETSdk": false,
-        "configFilePaths": [
-          "C:\\Users\\elias\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
-          "net48": {
+          "net40": {
             "projectReferences": {}
           }
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low"
-        },
-        "packagesConfigPath": "C:\\Users\\elias\\source\\repos\\habilitations2024\\habilitations2024\\packages.config"
+        }
       },
       "frameworks": {
-        "net48": {}
+        "net40": {}
       }
     }
   }
