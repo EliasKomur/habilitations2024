@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using habilitations2024.Controleur;
+using habilitations2024.DAL;
+using habilitations2024.Modele;
 
 namespace habilitations2024
 {
     public partial class FrmHabilitations : Form
     {
-        private readonly DeveloppeurController _controller = new DeveloppeurController();
-        private List<Developpeur> developpeurs;
+        private readonly DeveloppeurController _controller;
 
         public FrmHabilitations()
         {
             InitializeComponent();
+
+            // Injection de la dépendance
+            _controller = new DeveloppeurController(new DeveloppeurAccess());
 
             ChargementComboBoxProfils();
             ChargementComboBoxProfilSaisie();
@@ -22,7 +26,7 @@ namespace habilitations2024
 
             comboBoxProfils.SelectedIndex = 0;
         }
-
+        private List<Developpeur> developpeurs = new List<Developpeur>();
         private void ChargementComboBoxProfils()
         {
             comboBoxProfils.Items.Clear();

@@ -34,7 +34,6 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnModifier = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
-
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeveloppeurs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,6 +45,15 @@
             this.comboBoxProfils.Name = "comboBoxProfils";
             this.comboBoxProfils.Size = new System.Drawing.Size(200, 24);
             this.comboBoxProfils.TabIndex = 0;
+            // 
+            // comboBoxProfil
+            // 
+            this.comboBoxProfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProfil.FormattingEnabled = true;
+            this.comboBoxProfil.Location = new System.Drawing.Point(580, 107);
+            this.comboBoxProfil.Name = "comboBoxProfil";
+            this.comboBoxProfil.Size = new System.Drawing.Size(200, 24);
+            this.comboBoxProfil.TabIndex = 7;
             // 
             // dataGridViewDeveloppeurs
             // 
@@ -69,6 +77,13 @@
             this.txtNom.Size = new System.Drawing.Size(150, 22);
             this.txtNom.TabIndex = 3;
             // 
+            // txtPrenom
+            // 
+            this.txtPrenom.Location = new System.Drawing.Point(580, 75);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.Size = new System.Drawing.Size(150, 22);
+            this.txtPrenom.TabIndex = 5;
+            // 
             // lblNom
             // 
             this.lblNom.AutoSize = true;
@@ -77,13 +92,6 @@
             this.lblNom.Size = new System.Drawing.Size(36, 16);
             this.lblNom.TabIndex = 2;
             this.lblNom.Text = "Nom";
-            // 
-            // txtPrenom
-            // 
-            this.txtPrenom.Location = new System.Drawing.Point(580, 75);
-            this.txtPrenom.Name = "txtPrenom";
-            this.txtPrenom.Size = new System.Drawing.Size(150, 22);
-            this.txtPrenom.TabIndex = 5;
             // 
             // lblPrenom
             // 
@@ -103,18 +111,9 @@
             this.lblProfil.TabIndex = 6;
             this.lblProfil.Text = "Profil";
             // 
-            // comboBoxProfil
-            // 
-            this.comboBoxProfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxProfil.FormattingEnabled = true;
-            this.comboBoxProfil.Location = new System.Drawing.Point(580, 107);
-            this.comboBoxProfil.Name = "comboBoxProfil";
-            this.comboBoxProfil.Size = new System.Drawing.Size(200, 24);
-            this.comboBoxProfil.TabIndex = 7;
-            // 
             // btnAjouter
             // 
-            this.btnAjouter.Location = new System.Drawing.Point(533, 195);
+            this.btnAjouter.Location = new System.Drawing.Point(533, 175);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(75, 25);
             this.btnAjouter.TabIndex = 8;
@@ -124,7 +123,7 @@
             // 
             // btnModifier
             // 
-            this.btnModifier.Location = new System.Drawing.Point(614, 195);
+            this.btnModifier.Location = new System.Drawing.Point(614, 175);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(75, 25);
             this.btnModifier.TabIndex = 9;
@@ -134,7 +133,7 @@
             // 
             // btnSupprimer
             // 
-            this.btnSupprimer.Location = new System.Drawing.Point(695, 195);
+            this.btnSupprimer.Location = new System.Drawing.Point(695, 175);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(75, 25);
             this.btnSupprimer.TabIndex = 10;
@@ -161,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeveloppeurs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

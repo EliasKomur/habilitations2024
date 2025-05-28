@@ -1,95 +1,77 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using habilitations2024.DAL;
+using habilitations2024.Modele;
 
 namespace habilitations2024.Controleur
 {
     /// <summary>
-    /// Contrôleur gérant la logique métier liée aux développeurs.
+    /// Contrôleur pour la gestion métier des développeurs.
     /// </summary>
     public class DeveloppeurController
     {
-        private readonly DeveloppeurAccess _developpeurAccess = new DeveloppeurAccess();
+        private readonly IDeveloppeurAccess _developpeurAccess;
 
         /// <summary>
-        /// Obtient la liste des profils distincts des développeurs.
+        /// Injection de la dépendance pour l'accès aux données.
         /// </summary>
-        /// <returns>Liste des profils</returns>
+        public DeveloppeurController(IDeveloppeurAccess developpeurAccess)
+        {
+            _developpeurAccess = developpeurAccess;
+        }
+
+        /// <summary>
+        /// Retourne la liste des profils distincts.
+        /// </summary>
         public List<string> GetLesProfils()
         {
             try
             {
                 return _developpeurAccess.GetLesProfils();
             }
-            catch
+            catch (Exception)
             {
-                // Log ou traitement erreur ici si besoin
                 throw;
             }
         }
 
         /// <summary>
-        /// Obtient la liste des développeurs, filtrée par profil si précisé.
+        /// Retourne la liste des développeurs, filtrée par profil si besoin.
         /// </summary>
-        /// <param name="profil">Profil à filtrer, optionnel</param>
-        /// <returns>Liste des développeurs</returns>
         public List<Developpeur> GetLesDeveloppeurs(string profil = "")
         {
             try
             {
                 return _developpeurAccess.GetLesDeveloppeurs(profil);
             }
-            catch
+            catch (Exception)
             {
-                // Log ou traitement erreur ici si besoin
                 throw;
             }
         }
 
         /// <summary>
-        /// Ajoute un nouveau développeur.
+        /// Ajoute un développeur.
         /// </summary>
-        /// <param name="developpeur">Développeur à ajouter</param>
-        public void AjouterDeveloppeur(Developpeur developpeur)
+        public void AjouterDeveloppeur(Developpeur d)
         {
-            try
-            {
-                _developpeurAccess.AjouterDeveloppeur(developpeur);
-            }
-            catch
-            {
-                throw;
-            }
+            _developpeurAccess.AjouterDeveloppeur(d);
         }
 
         /// <summary>
-        /// Modifie un développeur existant.
+        /// Modifie un développeur.
         /// </summary>
-        /// <param name="developpeur">Développeur modifié</param>
-        public void ModifierDeveloppeur(Developpeur developpeur)
+        public void ModifierDeveloppeur(Developpeur d)
         {
-            try
-            {
-                _developpeurAccess.ModifierDeveloppeur(developpeur);
-            }
-            catch
-            {
-                throw;
-            }
+            _developpeurAccess.ModifierDeveloppeur(d);
         }
 
         /// <summary>
-        /// Supprime un développeur par son identifiant.
+        /// Supprime un développeur par son Id.
         /// </summary>
-        /// <param name="id">Identifiant du développeur à supprimer</param>
         public void SupprimerDeveloppeur(int id)
         {
-            try
-            {
-                _developpeurAccess.SupprimerDeveloppeur(id);
-            }
-            catch
-            {
-                throw;
-            }
+            _developpeurAccess.SupprimerDeveloppeur(id);
         }
     }
 }

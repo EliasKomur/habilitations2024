@@ -1,11 +1,19 @@
-﻿using System.Data.SqlClient;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
-public static class Connexion
+namespace habilitations2024.DAL
 {
-    public static MySqlConnection GetConnexion()
+    /// <summary>
+    /// Gestionnaire de la connexion MySQL.
+    /// </summary>
+    public static class Connexion
     {
-        string connexionString = "server=localhost;database=habilitations2024;uid=root;pwd=EK7_stesteve;";
-        return new MySqlConnection(connexionString);
+        /// <summary>
+        /// Retourne une connexion MySQL configurée.
+        /// </summary>
+        public static MySqlConnection GetConnexion()
+        {
+            string connexionString = "server=localhost;database=habilitations2024;uid=root;pwd=EK7_stesteve;";
+            return new MySqlConnection(connexionString);
+        }
     }
 }

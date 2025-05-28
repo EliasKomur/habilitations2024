@@ -1,0 +1,6 @@
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.csproj.AssemblyReference.cache
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.AssemblyInfoInputs.cache
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.AssemblyInfo.cs
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.csproj.CoreCompileInputs.cache
+C:\Users\elias\source\repos\habilitations2024\habilitations2024.Tests\obj\Debug\net48\habilitations2024.Tests.sourcelink.json
